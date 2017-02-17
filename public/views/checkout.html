@@ -1,0 +1,282 @@
+<style>
+.ckoutbtn {
+
+}
+</style>
+
+<link href="/css/new_store.css" rel="stylesheet" type="text/css" media="all">
+<!--
+<script type="text/javascript" src="//d3a1v57rabk2hm.cloudfront.net/1099/js/store/mains/cart3_main.js"></script>
+-->
+
+
+<div class="checkout_content container newco checkout_3">
+    <div id="error-flash" class="alert alert-block alert-danger hidden"></div>
+    <div class="left-col">
+        <section class="cart_listing styled_cart">
+            <header data-barley="checkout_cart_img" data-barley-editor="image" data-width="281" data-height="185" contenteditable="false" class="barley_hide_outline">
+                <img src="/images/squatch_truck_final.png">
+                <h3 data-barley="checkout_header_title" data-barley-editor="plus" contenteditable="false" class="barley_hide_outline">
+                    Order Summary
+                </h3>
+            </header>
+            <ngcart-cart></ngcart-cart>
+
+            <table class="price_table">
+                <tbody><tr id="shipping_row" class="detail-row">
+                    <td id="shipping_price_estimated_label"><strong>Estimated Shipping:</strong></td>
+                    <td id="shipping_price_label" style="display: none"><strong>Shipping:</strong></td>
+                    <td class="currency" id="shipping_price">
+
+                        $-.--
+
+                    </td>
+                </tr>
+                <tr id="gift_card_row" class="detail-row" style="display: none;">
+                    <td>
+                        <strong>Gift Card</strong>
+                        <form class="gift-card-toggle-form" method="POST" action="/checkout/gift_cards/remove">
+                            <button class="gift-card-toggle">
+                                Enable
+                            </button>
+                        </form>
+                    </td>
+                    <td class="price_column currency" id="gift_card_discount">-$0.00</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="coupon_section">
+                <form method="POST" action="/checkout/add_coupon" id="coupon_form" class="coupon_form">
+                    <div class="row">
+                        <div class=".col-xs-12">
+                            <div class="input-group">
+                                <input type="text" placeholder="Coupon or Gift Code" id="id_coupon_code" name="coupon_code" required="">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" id="add_coupon_code">Apply</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <p id="coupon_status_text"></p>
+                </form>
+            </div>
+        </section>
+    </div>
+    <div class="right-col">
+<!--        <section id="paypal-checkout-section">
+            <div dir="ltr" trbidi="on">
+                <div style="margin-bottom: 35px">
+                    <a data-paypal-button="true" href="https://www.paypal.com/cgi-bin/webscr?cmd=_express-checkout&amp;token=EC-394036240L859035C">
+                        <img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/checkout-logo-medium.png" alt="Check out with PayPal">
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <p class="divider" style="margin-bottom: 25px">
+                        <span>OR </span>
+                        <span class="divider"></span>
+                    </p>
+                </div>
+            </div>
+        </section>
+ -->
+        <form method="POST" id="checkout_form" name="checkoutForm">
+            <div class="cart_addresses">
+                <div class="ship_to form_holder">
+                    <div ng-controller="CartController">
+<!--
+                        <form novalidate class="simpleForm" name="simpleForm">
+-->
+                            <section>
+                            <h3>Shipping Address</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input autocomplete="shipping given-name" id="sa_first_name" name="sa_first_name" requiredx type="text" value="" ng-model="sa.firstname" ng-change="sameAddress && update()" ng-required="true"><label alt="First Name" placeholder="First Name"></label>
+                                    </div>
+                                    <span ng-show="checkoutForm.sa_first_name.$touched && checkoutForm.sa_first_name.$invalid">The name is required.</span>
+                                    <div class="col-md-6">
+                                        <input autocomplete="shipping family-name" id="sa_last_name" name="last_name" required="" type="text" value="" ng-model="sa.lastname" ng-change="sameAddress && update()"><label alt="Last Name" placeholder="Last Name"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input autocomplete="shipping street-address" id="sa_street" name="street" required="" type="text" value="" ng-model="sa.street" ng-change="sameAddress && update()"><label alt="Street Address" placeholder="Street Address"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input autocomplete="shipping address-line2" id="sa_unit" name="unit" class="not-required" type="text" value="" ng-model="sa.street2" ng-change="sameAddress && update()"><label alt="Apt/Unit (optional)" placeholder="Apt/Unit (optional)"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input autocomplete="shipping address-level2" id="sa_city" name="city" required="" type="text" value="" ng-model="sa.city" ng-change="sameAddress && update()"><label alt="City" placeholder="City"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select autocomplete="shipping address-level1" id="sa_state" ng-model="sa.state" name="state"><option value="">Select a state/province</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AS">American Samoa</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="AA">Armed Forces Americas</option><option value="AE">Armed Forces Europe</option><option value="AP">Armed Forces Pacific</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FM">Federated States of Micronesia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="GU">Guam</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MH">Marshall Islands</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="MP">Northern Mariana Islands</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PW">Palau</option><option value="PA">Pennsylvania</option><option value="PR">Puerto Rico</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VI">Virgin Islands</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="DC">Washington DC</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option></select>
+    <!--                                    <input autocomplete="shipping address-level2" id="sa_state" name="state" required="" type="text" value="" ng-model="sa.state" ng-change="sameAddress && update()"><label alt="State" placeholder="State"></label>-->
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input autocomplete="shipping postal-code" id="sa_zip_code" name="zip_code" required="" type="text" value="" ng-model="sa.zip" ng-change="sameAddress && update()"><label alt="Postal Code" placeholder="Postal Code"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input autocomplete="shipping phone" id="sa_phone" name="phone" required="" type="text" value="" ng-model="sa.phone" ng-change="sameAddress && update()"><label alt="Phone" placeholder="Phone"></label>
+                                    </div>
+                                </div>
+                            </section>
+                            <br />
+                            <input type="checkbox" ng-model="sameAddress" checked="checked" />Billing address is different from shipping address
+                            <br />
+                            <br />
+                            <section ng-show="sameAddress">
+                                <h3>Billing Address</h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input autocomplete="billing given-name" id="ba_first_name" name="first_name" required="" type="text" value="" ng-model="ba.firstname" ng-change="sameAddress && update()" novalidate><label alt="First Name" placeholder="First Name"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input autocomplete="billing family-name" id="ba_last_name" name="last_name" required="" type="text" value="" ng-model="ba.lastname" ng-change="sameAddress && update()"><label alt="Last Name" placeholder="Last Name"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <input autocomplete="billing street-address" id="ba_street" name="street" required="" type="text" value="" ng-model="ba.street" ng-change="sameAddress && update()"><label alt="Street Address" placeholder="Street Address"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input autocomplete="billing address-line2" id="ba_unit" name="unit" required="" type="text" value="" ng-model="ba.street2" ng-change="sameAddress && update()"><label alt="Apt/Unit (optional)" placeholder="Apt/Unit (optional)"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input autocomplete="billing address-level2" id="ba_city" name="city" required="" type="text" value="" ng-model="ba.city" ng-change="sameAddress && update()"><label alt="City" placeholder="City"></label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <select autocomplete="billing address-level1" id="ba_state" ng-model="ba.state" name="state"><option value="">Select a state/province</option><option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AS">American Samoa</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="AA">Armed Forces Americas</option><option value="AE">Armed Forces Europe</option><option value="AP">Armed Forces Pacific</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FM">Federated States of Micronesia</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="GU">Guam</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MH">Marshall Islands</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="MP">Northern Mariana Islands</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PW">Palau</option><option value="PA">Pennsylvania</option><option value="PR">Puerto Rico</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VI">Virgin Islands</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="DC">Washington DC</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option></select>
+<!--                                    <input autocomplete="billing address-level2" id="ba_state" name="state" required="" type="text" value="" ng-model="ba.state" ng-change="sameAddress && update()"><label alt="State" placeholder="State"></label>-->
+                                    </div>
+                                    <div class="col-md-3">
+                                        <input autocomplete="billing postal-code" id="ba_zip_code" name="zip_code" required="" type="text" value="" ng-model="ba.zip" ng-change="sameAddress && update()"><label alt="Postal Code" placeholder="Postal Code"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input autocomplete="billing phone" id="ba_phone" name="phone" required="" type="text" value="" ng-model="ba.phone" ng-change="sameAddress && update()"><label alt="Phone" placeholder="Phone"></label>
+                                    </div>
+                                </div>
+                                <br />
+                            </section>
+                            <br ng-show="sameAddress" />
+                            <section>
+                                <h3 data-barley="checkout_billing_title" data-barley-editor="plus">
+                                    Billing Information
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="right-inner-addon">
+                                            <i class="icon-lock"></i>
+                                            <input autocomplete="billing cc-number" id="cardNumber" name="cardNumber" required="" type="text" value="" ng-model="card.number" cc-numberx cc-eager-type >
+                                            <label alt="Credit Card Number" placeholder="Credit Card Number"></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <!-- Fancy Credit Card Selector -->
+                                        <div id="cc_select">
+                                            <div class="fcc-card amex ng-hide" ng-show="checkoutForm.cardNumber.$ccEagerType == 'American Express'" >
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/Amex.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                            <div class="fcc-card dinersclub" ng-show="checkoutForm.cardNumber.$ccEagerType == 'Diners Club'">
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/Diners-Club.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                            <div class="fcc-card discover" ng-show="checkoutForm.cardNumber.$ccEagerType == 'Discover'">
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/Discover.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                            <div class="fcc-card jcb" ng-show="checkoutForm.cardNumber.$ccEagerType == 'JCB'">
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/JCB.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                            <div class="fcc-card mastercard" ng-show="checkoutForm.cardNumber.$ccEagerType == 'MasterCard'">
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/Mastercard.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                            <div class="fcc-card visa" ng-show="checkoutForm.cardNumber.$ccEagerType == 'Visa'">
+                                                <div class="fcc-card-front">
+                                                    <img src="../images/checkout/cards/Visa.svg">
+                                                </div>
+                                                <div class="fcc-card-back">
+                                                    <img src="../images/checkout/cards/CVC.svg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <input autocomplete="billing cc-csc" id="cvc" name="cvc" required="" type="text" value="" ng-model="card.cvc" cc-type="cardNumber.$ccType" ng-required="true" ><label alt="CVC" placeholder="CVC"></label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select autocomplete="billing cc-exp-month" id="exp_month" name="exp_month" required=""  ng-model="card.exp_month" cc-exp-month ng-required="true" ><option value="1">01 - Jan</option><option value="2">02 - Feb</option><option value="3">03 - Mar</option><option value="4">04 - Apr</option><option value="5">05 - May</option><option value="6">06 - Jun</option><option value="7">07 - Jul</option><option value="8">08 - Aug</option><option value="9">09 - Sep</option><option value="10">10 - Oct</option><option value="11">11 - Nov</option><option value="12">12 - Dec</option></select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select autocomplete="billing cc-exp-year" id="exp_year" name="exp_year" required="" ng-model="card.exp_year" cc-exp-year ng-required="true" ><option value="17">2017</option><option value="18">2018</option><option value="19">2019</option><option value="20">2020</option><option value="21">2021</option><option value="22">2022</option><option value="23">2023</option><option value="24">2024</option><option value="25">2025</option><option value="26">2026</option><option value="27">2027</option><option value="28">2028</option><option value="29">2029</option><option value="30">2030</option><option value="31">2031</option><option value="32">2032</option><option value="33">2033</option><option value="34">2034</option><option value="35">2035</option><option value="36">2036</option><option value="37">2037</option></select>
+                                    </div>
+                                </div>
+                            </section>
+<!--
+                        </form>
+-->
+                </div>
+            </div>
+<!--
+            <div class="register">
+                <section>
+                    <h3 data-barley="checkout_account_title" data-barley-editor="plus">Create Account (required)</h3>
+                    <div class="editor registration checkout has-error">
+                        <div class="row" id="registration-email">
+                            <div class="col-md-6">
+                                <input autocomplete="account email" id="email" name="email" required="" type="text" value=""><label alt="Email Address" placeholder="Email Address"></label>
+                                <div class="email-suggestion" id="account-email-suggestion">Did you mean <a href="#"><span class="suggested-email"></span></a></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input autocomplete="account current-password" id="password" name="password" required="" type="password" value=""><label alt="Password" placeholder="Password"></label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+-->
+                <div class="cta">
+                    <input type="hidden" name="cart_id" value="576477934">
+                    <button type="submit" class="checkout_button primary-button btn btn-md btn-success btn-frame" id="checkout_button"><i class="icon footprint" style="margin-top: 0px;"></i>Checkout</button>
+                    invalid: {{checkoutForm.sa_first_name.$invalid}}
+                    <ngcart-checkout class="checkout_button primary-button btn btn-md btn-success btn-frame" ng-disabled="checkoutForm.sa_first_name.$invalid" service="http" settings="{ url:'/cart/checkout' }"></ngcart-checkout>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

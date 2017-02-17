@@ -1,0 +1,13 @@
+<section class="cart-slide">
+    <header>
+        <h1 class="heading" data-dismiss="modal" aria-label="Close">Your Cart &nbsp;&nbsp;<i class="fa fa-times"></i></h1>
+    </header>
+    <ngcart-cart></ngcart-cart>
+    <footer>
+        </div>
+        <div class="text-center">
+            <a href="/checkout" type="button" class="link-checkout btn btn-success btn-frame btn-lg" style="z-index: 99999" ng-show="ngCart.getTotalItems()"><i class="icon footprint"></i>Checkout</a>
+            <a href="#" id='btn-close-cart' data-dismiss='modal' arlia-label="Close" class="btn btn-success btn-frame btn-lg" ng-show="!ngCart.getTotalItems()"><i class="icon footprint"></i>Close</a>
+        </div>
+    </footer>
+</section>

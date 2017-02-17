@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 18.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="1171.4 0.4 53 35" enable-background="new 1171.4 0.4 53 35" xml:space="preserve">
+<g id="Back_1_">
+	<g id="Background_11_">
+		<path fill="#CDCDCD" d="M1224.4,31c0,2.4-2,4.4-4.4,4.4h-44.2c-2.4,0-4.4-2-4.4-4.4V4.7c0-2.4,2-4.4,4.4-4.4h44.2
+			c2.4,0,4.4,2,4.4,4.4V31z"/>
+	</g>
+	<rect id="Swipe_bar_1_" x="1172.1" y="5.9" fill="#424143" width="52.1" height="7"/>
+	<g id="Signature_2_">
+		<rect id="Signature_box_1_" x="1178.3" y="16.4" fill="#FFFFFF" width="31.8" height="7"/>
+		<rect id="Signature_3_" x="1180.9" y="19" fill="#424143" width="25.6" height="1.8"/>
+	</g>
+	<g id="Border_7_">
+		<g>
+			<path fill="#DFDEDD" d="M1220,1.2c1.9,0,3.5,1.6,3.5,3.5V31c0,1.9-1.6,3.5-3.5,3.5h-44.2c-1.9,0-3.5-1.6-3.5-3.5V4.7
+				c0-1.9,1.6-3.5,3.5-3.5H1220 M1220,0.4h-44.2c-2.4,0-4.4,2-4.4,4.4V31c0,2.4,2,4.4,4.4,4.4h44.2c2.4,0,4.4-2,4.4-4.4V4.7
+				C1224.4,2.3,1222.4,0.4,1220,0.4L1220,0.4z"/>
+		</g>
+	</g>
+	<rect id="CVC_code_1_" x="1212.7" y="16.4" fill="#FFFFFF" width="7.1" height="7"/>
+	<rect x="1213.6" y="19" fill="#424143" width="5.3" height="1.8"/>
+	<g id="Red_circle_3_">
+		<path fill="#E9564B" d="M1216.3,27.4c-4.3,0-7.7-3.4-7.7-7.7s3.5-7.7,7.7-7.7c4.3,0,7.7,3.4,7.7,7.7S1220.5,27.4,1216.3,27.4z
+			 M1216.3,13.9c-3.3,0-6,2.6-6,5.9c0,3.3,2.7,5.9,6,5.9s6-2.6,6-5.9C1222.2,16.5,1219.6,13.9,1216.3,13.9z"/>
+	</g>
+</g>
+</svg>

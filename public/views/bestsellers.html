@@ -1,0 +1,68 @@
+<!-- public/views/nerd.html -->
+
+
+<section class="banner-landscape landscape-20" data-barley="index-bg-img" data-barley-editor="bgimage">
+    <div class="col-sm-offset-7 col-sm-5 content text-invert text-center home-layout">
+        <!--<div class="col-xs-12 hidden-sm hidden-md hidden-lg" data-barley="index-header-img" data-barley-editor="image">-->
+        <!--<img src="/images/CedarCitrus-xxl.png" alt class="header-img-top-sm-home">-->
+        <!--</img>-->
+        <!--</div>-->
+        <div data-barley="index-header" data-barley-editor="advanced" contenteditable="false" class="barley_hide_outline">
+            <hgroup>
+                <h1 class="heading">
+                    {{big_text}}
+                </h1>
+                <h2 class="heading regular">
+                    {{medium_text}}
+                </h2>
+                <br>
+                <p class="vspace">
+                    {{small_text}}
+                </p>
+            </hgroup>
+        </div>
+    </div>
+    <div class="overlay row hpad">
+        <div class="col-sm-6 hidden-xs" data-barley="best-sellers-bg" data-barley-editor="image">
+            <img src={{foreground_image}} alt="" class="img-responsive">
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!--
+<script type="text/javascript">
+    //criteo getting top 3 items from the collection page
+    var productlist = [];
+
+    productlist.push('83096993');
+
+    productlist.push('70702082');
+
+    productlist.push('70704176');
+
+</script>
+-->
+<section class="squatch-collection pholder">
+    <div class="row">
+        <section class="b-product col-sm-4" data-product-id="70702082">
+            <a href="/shop/product/70702082">
+                <div class="img-product-collection-holder barley_hide_outline" data-barley="product_70702082_image" data-barley-editor="image" contenteditable="false">
+                    <img src="/images/cedc76fe78cf429c9289126e8e48f50c-3.png" class="img-responsive">
+                </div>
+            </a>
+            <div class="product-container">
+                <h3 class="heading collection-heading"><a href="/shop/product/70702082">Pine Tar</a>
+                    <span class="hlight">$7.00</span>
+                </h3>
+                <p>Rugged, woodsy, and strong, just like a Squatch man should be. </p>
+            </div>
+        </section>
+    </div>
+    <ngcart-addtocart id="70702082" name="Pine Tar" price="700" quantity="1" quantity-max="30" >add</ngcart-addtocart>
+    <a href="#" class="ecom-add-to-cart btn btn-secondary btn-frame btn-md" data-ecom-price="700" data-ecom-id="70702082"><i class="icon footprint"></i> Add to cart</a>
+</section>

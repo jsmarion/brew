@@ -1,0 +1,33 @@
+.cj-color-main {
+    background-color: #938983;
+}
+
+.cratejoy-loading-icon {
+    color: #938983;
+}
+
+input[type="radio"] + label.cj-btn {
+    border: 1px solid #938983;
+    color: #938983;
+}
+
+input[type="radio"]:checked + label.cj-btn, #skip_button.skipped {
+    background-color: #938983;
+    color: #fff;
+    border-color: #938983;
+}
+
+input[type="radio"]:checked + label.cj-btn.term h4,
+input[type="radio"]:checked + label.cj-btn.term h5 {
+    color: #fff;
+}
+
+#skip_button {
+    border: 1px solid #938983;
+    color: #938983;
+}
+
+#skip_button.skipped.hover {
+    color: #938983;
+    background-color: #fff;
+}
